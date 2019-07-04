@@ -5,18 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SuperPageComponent } from './super-page/super-page.component';
 import { LazyPageComponent } from './lazy-page/lazy-page.component';
+import {RecapComponent} from './recap/recap.component';
+import {CounterService} from './service/counter.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     SuperPageComponent,
-    LazyPageComponent
+    LazyPageComponent,
+    RecapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CounterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

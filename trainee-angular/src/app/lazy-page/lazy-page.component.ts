@@ -1,13 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-lazy-page',
-  templateUrl: './lazy-page.component.html',
-  styleUrls: ['./lazy-page.component.css']
+  template: `
+    <p>
+      lazy-page works!
+    </p>
+    <span>Vous avez cliquez {{countLazy}} fois</span>
+    <button (click)="reinitialiser()">reinitialiser</button>
+  `
 })
 export class LazyPageComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  countLazy: number;
+
+  @Output()
+  updateCount: EventEmitter<number> = new EventEmitter();
+
+  constructor() {
+  }
+
+  public reinitialiser() {
+    this.countLazy = 0;
+    this.updateCount.emit(this.countLazy);
+  }
 
   ngOnInit() {
   }

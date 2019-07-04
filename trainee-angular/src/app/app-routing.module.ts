@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LazyPageComponent} from './lazy-page/lazy-page.component';
 import {SuperPageComponent} from './super-page/super-page.component';
+import {RecapComponent} from './recap/recap.component';
 
 const routes: Routes = [
   {
     path: 'super-page',
     component: SuperPageComponent
+  },
+  {
+    path: 'recap-page',
+    component: RecapComponent
   },
   {
     path: 'lazy-page',
