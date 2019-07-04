@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SuperPageComponent } from './super-page/super-page.component';
+import { LazyPageComponent } from './lazy-page/lazy-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SuperPageComponent,
+    LazyPageComponent
   ],
   imports: [
     BrowserModule,

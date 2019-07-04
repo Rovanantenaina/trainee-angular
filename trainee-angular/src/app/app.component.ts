@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'trainee-angular';
+
+
+  constructor(private router: Router) {
+  }
+
+  goToSuperPage = () => {
+    this.router.navigate(['super-page']);
+  }
+
+  goToLazyPage = () => {
+    this.router.navigate(['lazy-page']);
+  }
 }
