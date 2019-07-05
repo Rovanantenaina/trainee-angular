@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class CounterService {
 
   private cCounter = 0;
 
+  private oObservator: BehaviorSubject<any> = new BehaviorSubject(void 0);
+
   public increment() {
     this.cCounter = this.cCounter + 1;
+    this.oObservator.next(this.cCounter);
   }
+
 
   public reInit(event: number) {
     this.cCounter = event;
@@ -20,4 +25,13 @@ export class CounterService {
   set counter(value: number) {
     this.cCounter = value;
   }
+
+  get observator(): BehaviorSubject<any> {
+    return this.oObservator;
+  }
+
+  set observator(value: BehaviorSubject<any>) {
+    this.oObservator = value;
+  }
+
 }

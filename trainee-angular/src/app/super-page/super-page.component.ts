@@ -15,10 +15,12 @@ import {BehaviorSubject, interval, Observable, of, Subscription} from 'rxjs';
 
     <button (click)="increment()">increment</button>
     <button (click)="recap()">historique</button>
+    <!--<label *ngFor="let test of hist">{{test}}</label>-->
   `
 })
 export class SuperPageComponent implements OnInit, OnDestroy {
   public count: number;
+  private hist: number[] = [];
   private subscription: Subscription;
   nom: string;
 
@@ -39,8 +41,13 @@ export class SuperPageComponent implements OnInit, OnDestroy {
     });
 
     this.changed.subscribe(value => {
-      console.error(value);
+      // console.error(value);
       this.nom = value;
+    });
+
+    this.counterService.observator.subscribe(value => {
+      // console.error(value);
+      this.count = value;
     });
   }
 
@@ -50,11 +57,13 @@ export class SuperPageComponent implements OnInit, OnDestroy {
 
   increment() {
     this.counterService.increment();
-    this.count = this.counterService.counter;
+    // this.count = this.counterService.counter;
   }
 
   reInit(event: number) {
+    this.hist.push(this.counterService.counter);
     this.counterService.reInit(event);
+
   }
 
   ngOnDestroy(): void {
