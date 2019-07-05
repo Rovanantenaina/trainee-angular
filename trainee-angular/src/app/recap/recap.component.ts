@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CounterService} from '../service/counter.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-recap',
@@ -12,11 +13,11 @@ import {CounterService} from '../service/counter.service';
 export class RecapComponent implements OnInit {
 
   varI: number;
-  constructor(private counterService: CounterService) {
+  constructor(private activatedRoute: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.varI = this.counterService.counter;
+    this.varI = this.activatedRoute.snapshot.data.count;
   }
 }

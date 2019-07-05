@@ -15,17 +15,9 @@ import {CounterService} from '../service/counter.service';
   `
 })
 export class SuperPageComponent implements OnInit {
-  public count = 0;
+  public count: number;
 
   constructor(private router: Router, private counterService: CounterService) {
-  }
-
-  public increment() {
-    this.count = this.count + 1;
-  }
-
-  public reInit(event: number) {
-    this.count = event;
   }
 
   public recap() {
@@ -36,4 +28,12 @@ export class SuperPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  increment() {
+    this.counterService.increment();
+    this.count = this.counterService.counter;
+  }
+
+  reInit(event: number) {
+    this.counterService.reInit(event);
+  }
 }

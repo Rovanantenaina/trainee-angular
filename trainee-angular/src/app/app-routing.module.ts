@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {LazyPageComponent} from './lazy-page/lazy-page.component';
 import {SuperPageComponent} from './super-page/super-page.component';
 import {RecapComponent} from './recap/recap.component';
+import {CounterService} from './service/counter.service';
+import {CounterResolver} from './service/counter.resolver';
 
 const routes: Routes = [
   {
@@ -11,7 +13,11 @@ const routes: Routes = [
   },
   {
     path: 'recap-page',
-    component: RecapComponent
+    component: RecapComponent,
+      resolve: {
+      count: CounterResolver,
+      count2: CounterResolver
+    }
   },
   {
     path: 'lazy-page',
@@ -21,6 +27,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CounterResolver]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

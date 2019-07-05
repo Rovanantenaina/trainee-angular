@@ -7,6 +7,7 @@ import { SuperPageComponent } from './super-page/super-page.component';
 import { LazyPageComponent } from './lazy-page/lazy-page.component';
 import {RecapComponent} from './recap/recap.component';
 import {CounterService} from './service/counter.service';
+import {CounterResolver} from './service/counter.resolver';
 
 @NgModule({
   declarations: [
