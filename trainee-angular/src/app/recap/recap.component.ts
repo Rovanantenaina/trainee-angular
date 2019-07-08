@@ -5,7 +5,10 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
     selector: 'app-recap',
     template: `
-      <p>{{varI}}</p>
+      <label *ngIf="histShareChild.length!==0"> Hello ! {{nameRecap}} </label>
+      <p *ngIf="histShareChild.length!==0">Your History :</p>
+      <label *ngFor="let test of histShareChild">{{test}} /</label>
+      <button *ngIf="histShareChild.length!==0" (click)="deleteHistory()">delete</button>
     `,
   }
 )
@@ -13,11 +16,23 @@ import {ActivatedRoute} from '@angular/router';
 export class RecapComponent implements OnInit {
 
   varI: number;
-  constructor(private activatedRoute: ActivatedRoute) {
+  histShareChild: number[];
+  nameRecap: number[];
+
+  constructor(private activatedRoute: ActivatedRoute, private counterService: CounterService) {
 
   }
 
   ngOnInit() {
+    this.nameRecap = this.counterService.name;
     this.varI = this.activatedRoute.snapshot.data.count;
+    this.histShareChild = this.counterService.histShare;
+    console.log(this.histShareChild);
+    // this.histShareChild = this.counterService.histShare;
   }
+
+  deleteHistory() {
+    this.histShareChild = [];
+  }
+
 }

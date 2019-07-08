@@ -5,6 +5,11 @@ import {BehaviorSubject} from 'rxjs';
 export class CounterService {
 
   private cCounter = 0;
+  public histShare: number[];
+  public name;
+
+  constructor() {
+  }
 
   private oObservator: BehaviorSubject<any> = new BehaviorSubject(void 0);
 
@@ -33,5 +38,4 @@ export class CounterService {
   set observator(value: BehaviorSubject<any>) {
     this.oObservator = value;
   }
-
 }
