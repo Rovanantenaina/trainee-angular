@@ -1,79 +1,69 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {CounterService} from '../service/counter.service';
-import {BehaviorSubject, interval, Observable, of, Subscription} from 'rxjs';
+import {PersonneClass} from '../class/personne.class';
+import {ValidationService} from '../service/validation.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-super-page',
-  template: `
-    <p>
-      super-page works!<br/>
-      <input type="text" (change)="changeText($event)">
-      <label *ngIf="nom">Bonjour {{nom}} !</label>
-      <app-lazy-page [countLazy]="count" (updateCount)="reInit($event)"></app-lazy-page>
-    </p>
+  template: `.
+  <h1>Etape 1</h1>
+  <br/>
+  <form (ngSubmit)="onSubmit()">
+    <label>Entrer votre nom : </label>
+    <input
+      type="text"
+      name="nom"
+      [(ngModel)]="personne.nom">
+    <br/><br/>
+    <label>Entrer votre prenom : </label>
+    <input
+      type="text"
+      name="prenom"
+      [(ngModel)]="personne.prenom">
+    <br/><br/>
+    <label>Entrer votre date de naissance : </label>
+    <input
+      type="date"
+      name="dateNaissance"
+      [(ngModel)]="personne.dateNaissance">
+    <br/><br>
+    <button type="submit" class="btn btn-primary" [disabled]="!personne.nom || !personne.prenom || !personne.dateNaissance">Enregistrer
+    </button>
+  </form>
 
-    <button (click)="increment()">increment</button>
-    <button (click)="recap()">historique</button>
-    
+
+  <!--<button (click)="increment()">increment</button>-->
+  <!--<button (click)="recap()">historique</button>-->
+
   `
 })
 export class SuperPageComponent implements OnInit, OnDestroy {
-  public count: number;
-  public hist: number[] = [];
-  private subscription: Subscription;
-  nom: string;
 
-  private changed: BehaviorSubject<any> = new BehaviorSubject(void 0);
+  personne: PersonneClass;
+  observable1: Observable<PersonneClass> = new Observable<PersonneClass>();
 
-  constructor(private router: Router, private counterService: CounterService) {
-  }
-
-  public recap() {
-    this.counterService.name = this.nom;
-    this.counterService.counter = this.count;
-    this.counterService.histShare = this.hist;
-    this.router.navigate(['recap-page']);
+  constructor(private router: Router, private validationService: ValidationService) {
   }
 
   ngOnInit() {
-    const observable = interval(1000);
-    this.subscription = observable.subscribe((valeur: any) => {
-      // console.log(valeur);
-    });
+    this.personne = this.validationService.personne || new PersonneClass();
+    /*personne Service*/
+    // console.log(this.personne);
 
-    this.changed.subscribe(value => {
-      // console.error(value);
-      this.nom = value;
-    });
-
-    this.counterService.observator.subscribe(value => {
-      // console.error(value);
-      this.count = value;
-    });
-  }
-
-  unsubsribeTimer() {
-    this.subscription.unsubscribe();
-  }
-
-  increment() {
-    this.counterService.increment();
-    // this.count = this.counterService.counter;
-  }
-
-  reInit(event: number) {
-    this.hist.push(this.counterService.counter);
-    this.counterService.reInit(event);
-
+    this.observable1.subscribe(value => {
+      this.personne = value;
+      console.log(value);
+      console.log('Fin');
+      });
   }
 
   ngOnDestroy(): void {
-    this.unsubsribeTimer();
-    this.changed.unsubscribe();
+
   }
 
-  changeText(event: any) {
-    this.changed.next(event.target.value.toString());
+  onSubmit() {
+    this.validationService.personne = this.personne;
+    this.router.navigate(['validation-page']);
   }
 }

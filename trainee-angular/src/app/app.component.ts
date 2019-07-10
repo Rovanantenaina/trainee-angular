@@ -13,11 +13,5 @@ export class AppComponent {
   constructor(private router: Router) {
   }
 
-  goToSuperPage = () => {
-    this.router.navigate(['super-page']);
-  }
 
-  goToLazyPage = () => {
-    this.router.navigate(['lazy-page']);
-  }
 }
