@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {SuperPageComponent} from './super-page/super-page.component';
-import {ValidationComponent} from './validation/validation.component';
-import {ValidationNextComponent} from './validation/validationNext.component';
+import {Etape2Component} from './validation/etape2.component';
+import {Etape3Component} from './validation/etape3.component';
 
 const routes: Routes = [
   {
@@ -11,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'validation-page',
-    component: ValidationComponent
+    component: Etape2Component
   },
   {
     path: 'validationNext-page',
-    component: ValidationNextComponent
+    component: Etape3Component
   }
 ];
 
