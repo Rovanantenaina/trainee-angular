@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-eras-root',
   template: `
     <div class="container">
       <div class="header pull-center">
