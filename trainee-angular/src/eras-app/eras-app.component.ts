@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 
 @Component({
-  selector: 'app-eras-root',
+  selector: "app-eras-root",
   template: `
     <div class="container">
       <div class="header pull-center">
@@ -26,8 +26,8 @@ import {Component} from '@angular/core';
       </div>
     </div>
   `,
-  styleUrls: ['./eras-app.component.css']
+  styleUrls: ["./eras-app.component.css"]
 })
 export class ErasAppComponent {
-  title = 'trainee-angular';
+  title = "trainee-angular";
 }
